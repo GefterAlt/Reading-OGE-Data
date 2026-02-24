@@ -11,7 +11,16 @@ class Program
         IEnumerable<AccessItem> inactiveItems = from item in items
                                                 where item.cloudLifecycleState == false
                                                 select item;
+        Console.Write("inactive records: ");
         Console.WriteLine(inactiveItems.Count());
+        IEnumerable<string> inactiveUsers = from item in items
+                                            where item.cloudLifecycleState == false
+                                            select item.displayName;
+        Console.WriteLine("inactive users: ");
+        foreach (string s in inactiveUsers.Distinct())
+        {
+            Console.WriteLine(s);
+        }
     }
 
     public static List<AccessItem> read()
