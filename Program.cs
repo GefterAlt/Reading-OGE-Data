@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-
+        Console.WriteLine(read().Count);
     }
 
     public static List<AccessItem> read()
