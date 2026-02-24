@@ -23,7 +23,7 @@ class Program
             while (line != null)
             {
                 tempArr = line.Split(",");
-                if (tempArr[7] == "ACTIVE")
+                if (tempArr[6] == "TRUE")
                 {
                     tempBool = true;
                 }
