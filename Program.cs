@@ -7,9 +7,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<AccessItem> items = new List<AccessItem>();
+        List<AccessItem> items = read();
         IEnumerable<AccessItem> inactiveItems = from item in items
-                                                where item.cloudLifecycleState.Equals("ACTIVE")
+                                                where item.cloudLifecycleState == false
                                                 select item;
         Console.WriteLine(inactiveItems.Count());
     }
@@ -34,7 +34,7 @@ class Program
                     tempBool = true;
                 }
                 else { tempBool = false; }
-                if (tempArr[4] == "ACTIVE")
+                if (tempArr[4] == "active")
                 {
                     tempBool2 = true;
                 }
