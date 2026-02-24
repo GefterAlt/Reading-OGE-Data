@@ -6,7 +6,7 @@ public struct AccessItem
     public readonly string firstName;
     public readonly string lastName;
     public readonly string workMail;
-    public readonly string cloudLifecycleState;
+    public readonly bool cloudLifecycleState;
     public readonly string identityID;
     public readonly bool isManager;
     public readonly string department;
@@ -17,7 +17,7 @@ public struct AccessItem
     public readonly string accessDisplayName;
     public readonly string accessDescription;
 
-    public AccessItem(string dN, string fN, string lN, string m, string cls, string id, bool isM, string dept, string jT, string uid, string aT, string aSN, string aDisN, string aDsc)
+    public AccessItem(string dN, string fN, string lN, string m, bool cls, string id, bool isM, string dept, string jT, string uid, string aT, string aSN, string aDisN, string aDsc)
     {
         displayName = dN;
         firstName = fN;

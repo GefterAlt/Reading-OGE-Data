@@ -1,4 +1,5 @@
-﻿using System.Security.AccessControl;
+﻿using System.Linq.Expressions;
+using System.Security.AccessControl;
 
 namespace Reading_OGE_Data;
 
@@ -6,7 +7,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(read().Count);
+        List<AccessItem> items = new List<AccessItem>();
+        IEnumerable<AccessItem> inactiveItems = from item in items
+                                                where item.cloudLifecycleState.Equals("ACTIVE")
+                                                select item;
+        Console.WriteLine(inactiveItems.Count());
     }
 
     public static List<AccessItem> read()
@@ -18,6 +23,7 @@ class Program
             string? line;
             string[] tempArr;
             bool tempBool;
+            bool tempBool2;
             line = sr.ReadLine();
             line = sr.ReadLine();
             while (line != null)
@@ -28,7 +34,12 @@ class Program
                     tempBool = true;
                 }
                 else { tempBool = false; }
-                AccessItem currentItem = new AccessItem(tempArr[0], tempArr[1], tempArr[2], tempArr[3], tempArr[4], tempArr[5], tempBool, tempArr[7], tempArr[8], tempArr[9], tempArr[10], tempArr[11], tempArr[12], tempArr[13]);
+                if (tempArr[4] == "ACTIVE")
+                {
+                    tempBool2 = true;
+                }
+                else { tempBool2 = false; }
+                AccessItem currentItem = new AccessItem(tempArr[0], tempArr[1], tempArr[2], tempArr[3], tempBool2, tempArr[5], tempBool, tempArr[7], tempArr[8], tempArr[9], tempArr[10], tempArr[11], tempArr[12], tempArr[13]);
                 accesses.Add(currentItem);
                 line = sr.ReadLine();
             }
