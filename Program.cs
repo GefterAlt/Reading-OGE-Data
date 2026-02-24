@@ -8,9 +8,11 @@ class Program
     static void Main(string[] args)
     {
         List<AccessItem> items = read();
-        IEnumerable<AccessItem> inactiveItems = from item in items
-                                                where item.cloudLifecycleState == false
-                                                select item;
+        var inactiveItems = from item in items
+                            where item.cloudLifecycleState == false
+                            group item by item.displayName into userAccesses
+                            orderby userAccesses.Key ascending
+                            select userAccesses;
         Console.Write("inactive records: ");
         Console.WriteLine(inactiveItems.Count());
         IEnumerable<string> inactiveUsers = from item in items
